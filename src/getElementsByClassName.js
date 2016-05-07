@@ -6,5 +6,15 @@
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className
 ) {
-  // your code here
+  // Beginning with only the document root level elements:
+  var target = document.body;
+  var elements = [];
+  var children = target.childNodes;
+  for (var i = 0; i < children.length; i++) {
+    var element = children[i];
+    if (element.classList && element.classList.contains(className) !== -1) {
+      elements.push(element);
+    }
+  }
+  return elements;
 };

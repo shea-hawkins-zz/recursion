@@ -5,4 +5,18 @@
 
 var stringifyJSON = function(obj) {
   // your code goes here
+  // Starting simple, beginning with only stringifying primitives.
+  var objectType = typeof obj;
+  switch (objectType) {
+    case 'number':
+    case 'boolean':
+      return obj.toString();
+      break;
+    case 'string':
+      return '"' + obj + '"';
+      break;
+    case 'undefined':
+      return undefined;
+      break;
+  }
 };

@@ -4,17 +4,32 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
+var getElementsByClassName = function(className, target
 ) {
-  // Beginning with only the document root level elements:
-  var target = document.body;
+  if (!target) {
+    var target = document.body;
+  }
   var elements = [];
+  if (target.classList && target.classList.contains(className)) {
+    elements.push(target);
+  }
   var children = target.childNodes;
   for (var i = 0; i < children.length; i++) {
     var element = children[i];
-    if (element.classList && element.classList.contains(className) !== -1) {
+    if (element.classList && element.classList.contains(className)) {
       elements.push(element);
     }
+    if (element.childNodes) {
+      var elementChildren = element.childNodes;
+      for (var j = 0; j < elementChildren.length; j++) {
+        var nestedElements = getElementsByClassName(className, elementChildren[j]);
+        elements = elements.concat(nestedElements);
+      }
+    }
   }
+  setTimeout(function() {
+    console.log(elements);
+    console.log(document.getElementsByClassName(className));
+  }, 8000);
   return elements;
 };

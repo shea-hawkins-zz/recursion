@@ -7,6 +7,15 @@ var stringifyJSON = function(obj) {
   // your code goes here
   // Starting simple, beginning with only stringifying primitives.
   var objectType = typeof obj;
+  if (objectType === 'object') {
+    if (obj === null) {
+      objectType = 'null';
+    } else if (Array.isArray(obj)) {
+      objectType = 'array';
+    } else {
+      objectType = 'object';
+    }
+  }
   switch (objectType) {
     case 'number':
     case 'boolean':

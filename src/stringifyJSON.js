@@ -31,8 +31,14 @@ var stringifyJSON = function(obj) {
       return 'null';
       break;
     case 'array':
-      var nestedString = '';
-      // here will be the recursive operations for arrays.
+      var nestedArray = [];
+      obj.forEach(function (e) {
+        var elementJSON = stringifyJSON(e);
+        if (elementJSON !== undefined) {
+          nestedArray.push(elementJSON);
+        }
+      });
+      var nestedString = nestedArray.join(',');
       return '[' + nestedString + ']';
       break;
     case 'object':

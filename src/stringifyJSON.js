@@ -27,5 +27,18 @@ var stringifyJSON = function(obj) {
     case 'undefined':
       return undefined;
       break;
+    case 'null':
+      return 'null';
+      break;
+    case 'array':
+      var nestedString = '';
+      // here will be the recursive operations for arrays.
+      return '[' + nestedString + ']';
+      break;
+    case 'object':
+      var nestedString = '';
+      // here lie recursive operations.
+      return '{' + nestedString + '}';
+      break;
   }
 };
